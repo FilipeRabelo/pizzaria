@@ -16,9 +16,9 @@ include_once("process/pizza.php");
 
                     <div class="form-group">
                         <label for="borda">Borda:</label>
-                        <select name="borda" id="borda" class="form-control">
+                        <select name="borda" id="borda" class="form-control" required>
                             <option value="">Selecione a Borda da Pizza</option>
-                            <?php foreach ($bordas as $borda) :  ?>
+                            <?php foreach ($bordas as $borda):  ?>
                                 <option value="<?= $borda["id"] ?>"><?= $borda["tipo"] ?></option>
                                 <!-- COLUNA TIPO VINDO DO BANCO TABELA BORDAS -->
                                 <!-- SALVANDO O ID DA BORDA -->
@@ -29,9 +29,9 @@ include_once("process/pizza.php");
 
                     <div class="form-group">
                         <label for="massa">Massa:</label>
-                        <select name="massa" id="massa" class="form-control">
+                        <select name="massa" id="massa" class="form-control" required>
                             <option value="">Selecione a Massa da Pizza</option>
-                            <?php foreach ($massas as $massa) : ?>
+                            <?php foreach ($massas as $massa): ?>
                                 <option value="<?= $massa["id"] ?>"><?= $massa["tipo"] ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -39,7 +39,7 @@ include_once("process/pizza.php");
 
                     <div class="form-group">
                         <label for="sabores">Sabores:(Máximo 3 Sabores)</label>
-                        <select multiple name="sabores[]" id="sabores" class="form-control">
+                        <select multiple name="sabores[]" id="sabores" class="form-control" required>
                             <!-- PARA ENVIAR MAIS DE UM VALOR -->
                             <?php foreach($sabores as $sabor): ?>
                                 <option value="<?= $sabor["id"] ?>"><?= $sabor["nome"] ?></option>

@@ -3,7 +3,7 @@
 
     $method = $_SERVER["REQUEST_METHOD"];
 
-    // SELECT
+    // SELECT // RESGATE DOS DADOS
     if ($method === "GET") { // RESGATE DOS DADOS E MONTAGEM DOS PEDIDOS  SELECT
 
         $bordasQuery  = $conn->query("SELECT * FROM bordas;");  //BUSCANDO todas as INFORMAÇÕES da tabela do banco
@@ -14,31 +14,33 @@
 
         $saboresQuery = $conn->query("SELECT * FROM sabores;");
         $sabores = $saboresQuery->fetchAll();   
-
-        // echo "Bordas";
-        // echo "<pre>";
-        // print_r($bordas);
-       
-        // echo "Massas";
-        // echo "<pre>";
-        // print_r($massas);
-        
-        // echo "Sabores";
-        // echo "<pre>";
-        // print_r($sabores);
-        // exit();
-
         
     }else if ($method === "POST") { // CRIAÇÃO DO PEDIDO
 
+        $data = $_POST;
+
+        $borda   = $data["borda"];
+        $massa   = $data["massa"];
+        $sabores = $data["sabores"];
+
+
+        // VALIDAÇÃO DE SABORES MAXIMOS
+
+        if (count($sabores) > 3) {
+
+            $_SESSION["msg"] = "Selecione no Máximo 3 Sabores!!!";
+            $_SESSION["status"] = "warning";        
+            
+        }else{
+
+            echo "Passou da validação";
+            exit;
      
+        }
+
+        //RETORNA PARA PAGINA INICIAL
+        header("Location: ..");    
         
-    } else {
-        # code...
     }
-    
-
-
-
 
 ?>

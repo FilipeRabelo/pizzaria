@@ -1,3 +1,18 @@
+<?php
+include("process/conn.php"); //PARA PEGAR A PAARTE DA SESSAO
+
+$msg = "";
+
+if (isset($_SESSION["msg"])) {
+
+    $msg    = $_SESSION["msg"];    // PARA EXIBIR A MSG
+    $status = $_SESSION["status"];
+
+    $_SESSION["msg"]    = "";  // Para limpar a msg e tirar o alerta
+    $_SESSION["status"] = "";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -34,6 +49,8 @@
         </nav>
     </header>
 
-    <!-- <div class="alert alert-success">
-        <p>Pedido Feito com Sucesso</p>
-    </div> -->
+    <?php if ($msg != "") : ?>
+        <div class="alert alert-<?= $status ?>">
+            <p><?= $msg ?></p>
+        </div>
+    <?php endif; ?>
